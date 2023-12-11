@@ -16,6 +16,8 @@ class Program
         int menyVal = 0;
         bool checkNum = false;
         // En lista för att spara historik för räkningar
+        string resultat = "";
+        List<string> resultatLista = new List<string>();
 
         // Välkomnande meddelande
         Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *\n");
@@ -52,8 +54,17 @@ class Program
                 //secondNum = Convert.ToDouble(Console.ReadLine());
                 goto chooseOperator;
                 break;
-            case 2:
-                Console.WriteLine("Resultat"); // Visa tidigare resultat
+            case 2: // Visa tidigare resultat
+                if (resultatLista.Count == 0)
+                {
+                    //Console.WriteLine(String.Join(", ", resultatLista));
+                    Console.WriteLine("Du har inga sparade resultat.");
+                }
+                else
+                {
+                    //Console.WriteLine("Du har inga sparade resultat.");
+                    Console.WriteLine(String.Join(",   ", resultatLista));
+                }
                 goto calcMeny;
                 break;
             case 3:
@@ -74,11 +85,15 @@ class Program
                 switch (valOperator)
                 {
                     case "+":
-                        Console.WriteLine(firstNum + secondNum);
+                        resultat = $"{firstNum} + {secondNum} = {firstNum + secondNum}";
+                        resultatLista.Add(resultat);
+                        Console.WriteLine(resultat);
                         goto fortsattLRavslut;
                         break;
                     case "-":
-                        Console.WriteLine(firstNum - secondNum);
+                        resultat = $"{firstNum} - {secondNum} = {firstNum - secondNum}";
+                        resultatLista.Add(resultat);
+                        Console.WriteLine(resultat);
                         goto fortsattLRavslut;
                         break;
                     case "/":
@@ -88,12 +103,16 @@ class Program
                         }
                         else 
                         {
-                            Console.WriteLine(firstNum / secondNum);
+                            resultat = $"{firstNum} / {secondNum} = {firstNum / secondNum}";
+                            resultatLista.Add(resultat);
+                            Console.WriteLine(resultat);
                             goto fortsattLRavslut;
                         }
                         break;
                     case "*":
-                        Console.WriteLine(firstNum * secondNum);
+                        resultat = $"{firstNum} * {secondNum} = {firstNum * secondNum}";
+                        resultatLista.Add(resultat);
+                        Console.WriteLine(resultat);
                         goto fortsattLRavslut;
                         break;
                     default:    // Ifall användaren skulle dela med 0 visa Ogiltig inmatning!
@@ -152,16 +171,16 @@ class Program
 
         // Fråga användaren om den vill avsluta eller fortsätta.
         fortsattLRavslut:
-            Console.WriteLine("Vill du forstätta(F) eller avsluta?(A)");
+            Console.WriteLine("Vill du utföra fler beräkningar? (J/N)");
             string val = Console.ReadLine().ToLower();
-            if (val == "f")
+            if (val == "j")
             {
                 menyVal = 1;
                 goto raknemeny;
             }
-            if (val == "a") 
+            if (val == "n") 
             {
-                goto avsluta;
+                goto calcMeny;
             }
             else 
             {
