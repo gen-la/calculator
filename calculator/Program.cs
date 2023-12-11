@@ -14,11 +14,11 @@ class Program
         double firstNum = 0;
         double secondNum = 0;
         int menyVal = 0;
+        bool checkNum = false;
         // En lista för att spara historik för räkningar
-        // Visa tidigare resultat
 
         // Välkomnande meddelande
-        Console.WriteLine($"Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *\n");
+        Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *\n");
         calcMeny:
             Console.WriteLine("Välj ett av alternativen nedan:\n" +
                 "1. Starta miniräknaren\n" +
@@ -32,18 +32,32 @@ class Program
         switch (menyVal)
         {
             case 1:
-                Console.WriteLine("Skriv in det första talet: ");
-                firstNum = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Skriv in det andra talet: ");
-                secondNum = Convert.ToDouble(Console.ReadLine());
+                while (!checkNum)
+                {
+                    Console.WriteLine("Skriv in det första talet: ");
+                    checkNum = double.TryParse(Console.ReadLine(), out firstNum);
+                    if (!checkNum)
+                        Console.WriteLine("Fel input, skriv en siffra.");
+                }
+                checkNum = false;
+                while (!checkNum)
+                {
+                    Console.WriteLine("Skriv in det andra talet: ");
+                    checkNum = double.TryParse(Console.ReadLine(), out secondNum);
+                    if (!checkNum)
+                        Console.WriteLine("Fel input, skriv en siffra.");
+                }
+                checkNum = false;
+                //firstNum = Convert.ToDouble(Console.ReadLine());
+                //secondNum = Convert.ToDouble(Console.ReadLine());
                 goto chooseOperator;
                 break;
             case 2:
-                Console.WriteLine("Resultat");
+                Console.WriteLine("Resultat"); // Visa tidigare resultat
                 goto calcMeny;
                 break;
             case 3:
-                goto avslutar;
+                goto avsluta;
                 break;
             default:
                 Console.Write("Felaktigt menyval. Försök igen.\n");
@@ -83,16 +97,24 @@ class Program
                         goto fortsattLRavslut;
                         break;
                     default:    // Ifall användaren skulle dela med 0 visa Ogiltig inmatning!
-                        while (firstNum <= 0)
+                        while (!checkNum && firstNum <= 0)
                         {
-                            Console.WriteLine("Division med 0 går inte, skriv ett tal större än 0:");
-                            firstNum = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("Skriv in ett tal större än 0:");
+                            checkNum = double.TryParse(Console.ReadLine(), out firstNum);
+                            if (!checkNum)
+                                Console.WriteLine("Fel input, skriv en siffra.");
+                            //firstNum = Convert.ToDouble(Console.ReadLine());
                         }
-                        while (secondNum <= 0)
+                        checkNum = false;
+                        while (!checkNum && secondNum <= 0)
                         {
-                            Console.WriteLine("Division med 0 går inte, skriv ett tal större än 0:");
-                            secondNum = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("Skriv in ett tal större än 0:");
+                            checkNum = double.TryParse(Console.ReadLine(), out secondNum);
+                            if (!checkNum)
+                                Console.WriteLine("Fel input, skriv en siffra.");
+                            //secondNum = Convert.ToDouble(Console.ReadLine());
                         }
+                        checkNum = false;
                         goto case "/";
                         break;
                 }
@@ -139,7 +161,7 @@ class Program
             }
             if (val == "a") 
             {
-                goto avslutar;
+                goto avsluta;
             }
             else 
             {
@@ -149,7 +171,7 @@ class Program
 
 
         //Visa ett meddelande innan programmet avslutas
-        avslutar:
+        avsluta:
             Console.WriteLine("Avslutar miniräknaren");
 
         /*if (val == "+" || val == "-" || val == "/" || val == "*")
