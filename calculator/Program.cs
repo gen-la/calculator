@@ -13,27 +13,30 @@ class Program
     {
         double firstNum = 0;
         double secondNum = 0;
-        int menyVal = 0;
+        //int menyVal = 0;
+        string menyVal = "";
         bool checkNum = false;
         // En lista för att spara historik för räkningar
         string resultat = "";
         List<string> resultatLista = new List<string>();
 
         // Välkomnande meddelande
-        Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *\n");
+        Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *");
         calcMeny:
-            Console.WriteLine("Välj ett av alternativen nedan:\n" +
+            Console.WriteLine("\nVälj ett av alternativen nedan:\n" +
                 "1. Starta miniräknaren\n" +
                 "2. Visa tidigare resultat\n" +
                 "3. Avsluta");
-            menyVal = int.Parse(Console.ReadLine());
+            //menyVal = int.Parse(Console.ReadLine());
+            menyVal = (Console.ReadLine());
+            Console.Clear();
 
         // Användaren matar in tal och matematiska operation
         // OBS! Användaren måsta mata in ett tal för att kunna ta sig vidare i programmet!
         raknemeny:
         switch (menyVal)
         {
-            case 1:
+            case "1":
                 while (!checkNum)
                 {
                     Console.WriteLine("Skriv in det första talet: ");
@@ -54,7 +57,7 @@ class Program
                 //secondNum = Convert.ToDouble(Console.ReadLine());
                 goto chooseOperator;
                 break;
-            case 2: // Visa tidigare resultat
+            case "2": // Visa tidigare resultat
                 if (resultatLista.Count == 0)
                 {
                     //Console.WriteLine(String.Join(", ", resultatLista));
@@ -65,13 +68,16 @@ class Program
                     //Console.WriteLine("Du har inga sparade resultat.");
                     Console.WriteLine(String.Join(",   ", resultatLista));
                 }
+                Console.WriteLine("\nTryck på enter för att återvända till menyn.");
+                Console.ReadKey();
+                Console.Clear();
                 goto calcMeny;
                 break;
-            case 3:
+            case "3":
                 goto avsluta;
                 break;
             default:
-                Console.Write("Felaktigt menyval. Försök igen.\n");
+                Console.Write($"| FELAKTIGT MENYVAL! FÖRSÖK IGEN |\n");
                 goto calcMeny;
                 break;
         }
@@ -171,15 +177,18 @@ class Program
 
         // Fråga användaren om den vill avsluta eller fortsätta.
         fortsattLRavslut:
-            Console.WriteLine("Vill du utföra fler beräkningar? (J/N)");
+            Console.WriteLine("\nVill du utföra fler beräkningar? (Ja/Nej)");
             string val = Console.ReadLine().ToLower();
-            if (val == "j")
+            if (val == "j" || val == "ja")
             {
-                menyVal = 1;
+                //menyVal = 1;
+                menyVal = "1";
+                Console.Clear();
                 goto raknemeny;
             }
-            if (val == "n") 
+            if (val == "n" || val == "nej") 
             {
+                Console.Clear();
                 goto calcMeny;
             }
             else 
