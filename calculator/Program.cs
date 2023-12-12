@@ -21,7 +21,8 @@ class Program
         List<string> resultatLista = new List<string>();
 
         // Välkomnande meddelande
-        Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *");
+        //Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *");
+        titel();
         calcMeny:
             Console.WriteLine("\nVälj ett av alternativen nedan:\n" +
                 "1. Starta miniräknaren\n" +
@@ -75,6 +76,9 @@ class Program
                 break;
             case "3":
                 goto avsluta;
+                break;
+            case "art":
+                art();
                 break;
             default:
                 Console.Write($"| FELAKTIGT MENYVAL! FÖRSÖK IGEN |\n");
@@ -198,56 +202,69 @@ class Program
             }
 
 
-        //Visa ett meddelande innan programmet avslutas
-        avsluta:
-            Console.WriteLine("Avslutar miniräknaren");
+    //Visa ett meddelande innan programmet avslutas
+    avsluta:
+        Console.WriteLine("Avslutar miniräknaren");
 
-        /*if (val == "+" || val == "-" || val == "/" || val == "*")
+    /*if (val == "+" || val == "-" || val == "/" || val == "*")
+    {
+        switch (val)
         {
-            switch (val)
-            {
-                case "+":
-                    Console.WriteLine(firstNum + secondNum);
-                    break;
-                case "-":
-                    Console.WriteLine(firstNum - secondNum);
-                    break;
-                case "/":
-                    Console.WriteLine(firstNum / secondNum);
-                    break;
-                case "*":
-                    Console.WriteLine(firstNum * secondNum);
-                    break;
-                default:
-                    Console.Write("Felaktigt menyval, försök igen.");
-                    break;
-            }
+            case "+":
+                Console.WriteLine(firstNum + secondNum);
+                break;
+            case "-":
+                Console.WriteLine(firstNum - secondNum);
+                break;
+            case "/":
+                Console.WriteLine(firstNum / secondNum);
+                break;
+            case "*":
+                Console.WriteLine(firstNum * secondNum);
+                break;
+            default:
+                Console.Write("Felaktigt menyval, försök igen.");
+                break;
         }
-        else
+    }
+    else
+    {
+        Console.WriteLine($"Felaktig inmatning. Välj en operator (+ - / *): ");
+        val = Console.ReadLine();
+        switch (val)
         {
-            Console.WriteLine($"Felaktig inmatning. Välj en operator (+ - / *): ");
-            val = Console.ReadLine();
-            switch (val)
-            {
-                case "+":
-                    Console.WriteLine(firstNum + secondNum);
-                    break;
-                case "-":
-                    Console.WriteLine(firstNum - secondNum);
-                    break;
-                case "/":
-                    Console.WriteLine(firstNum / secondNum);
-                    break;
-                case "*":
-                    Console.WriteLine(firstNum * secondNum);
-                    break;
-                default:
-                    Console.Write("Felaktigt menyval, försök igen.");
-                    break;
-            }
-        }*/
-        // Lägga resultat till listan
-        // Visa resultat
-        // Fråga användaren om den vill visa tidigare resultat.
+            case "+":
+                Console.WriteLine(firstNum + secondNum);
+                break;
+            case "-":
+                Console.WriteLine(firstNum - secondNum);
+                break;
+            case "/":
+                Console.WriteLine(firstNum / secondNum);
+                break;
+            case "*":
+                Console.WriteLine(firstNum * secondNum);
+                break;
+            default:
+                Console.Write("Felaktigt menyval, försök igen.");
+                break;
+        }
+    }*/
+    // Lägga resultat till listan
+    // Visa resultat
+    // Fråga användaren om den vill visa tidigare resultat.
+        void titel()
+        {
+            Console.WriteLine(@" ________          ________          ___               ________");
+            Console.WriteLine(@"|\   ____\        |\   __  \        |\  \             |\   ____\  ");
+            Console.WriteLine(@"\ \  \___|        \ \  \|\  \       \ \  \            \ \  \___|  ");
+            Console.WriteLine(@" \ \  \            \ \   __  \       \ \  \            \ \  \    ");
+            Console.WriteLine(@"  \ \  \____        \ \  \ \  \       \ \  \____        \ \  \____  ");
+            Console.WriteLine(@"   \ \_______\       \ \__\ \__\       \ \_______\       \ \_______\");
+            Console.WriteLine(@"    \|_______|        \|__|\|__|        \|_______|        \|_______|");
+        }
+
+        void art() { }
+
     }
 }
