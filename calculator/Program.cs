@@ -40,7 +40,7 @@ class Program
             case "1":
                 while (!checkNum)
                 {
-                    Console.WriteLine("Skriv in det första talet: ");
+                    Console.WriteLine("\nSkriv in det första talet: ");
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                     if (!checkNum)
                         Console.WriteLine("Fel input, skriv en siffra.");
@@ -81,14 +81,16 @@ class Program
                 art();
                 break;
             default:
-                Console.Write($"| FELAKTIGT MENYVAL! FÖRSÖK IGEN |\n");
+                Console.Write("| FELAKTIGT MENYVAL! FÖRSÖK IGEN |\n");
                 goto calcMeny;
                 break;
         }
         
         //Välj operator och utför beräkningarna
         chooseOperator:
-            Console.WriteLine($"Välj en operator (+ - / *): ");
+            Console.WriteLine("Välj en operator (+ - / *):");
+            Console.WriteLine("                                                              "); //Rensa raden från tidigare input
+            Console.SetCursorPosition(0, 6);
             string valOperator = Console.ReadLine();
             if ( valOperator=="+" || valOperator=="-" || valOperator=="/" || valOperator=="*")
             {
@@ -98,12 +100,14 @@ class Program
                         resultat = $"{firstNum} + {secondNum} = {firstNum + secondNum}";
                         resultatLista.Add(resultat);
                         Console.WriteLine(resultat);
+                        rensa();
                         goto fortsattLRavslut;
                         break;
                     case "-":
                         resultat = $"{firstNum} - {secondNum} = {firstNum - secondNum}";
                         resultatLista.Add(resultat);
                         Console.WriteLine(resultat);
+                        rensa();
                         goto fortsattLRavslut;
                         break;
                     case "/":
@@ -116,6 +120,7 @@ class Program
                             resultat = $"{firstNum} / {secondNum} = {firstNum / secondNum}";
                             resultatLista.Add(resultat);
                             Console.WriteLine(resultat);
+                            rensa();
                             goto fortsattLRavslut;
                         }
                         break;
@@ -123,6 +128,7 @@ class Program
                         resultat = $"{firstNum} * {secondNum} = {firstNum * secondNum}";
                         resultatLista.Add(resultat);
                         Console.WriteLine(resultat);
+                        rensa();
                         goto fortsattLRavslut;
                         break;
                     default:    // Ifall användaren skulle dela med 0 visa Ogiltig inmatning!
@@ -150,7 +156,9 @@ class Program
             }
             else 
             {
-                Console.Write("Felaktig inmatning. Försök igen.\n");
+                Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
+                Console.Write("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
+                Console.SetCursorPosition(0, 5);   //Flytta tillbaka markören till sin plats
                 goto chooseOperator;
             }
 
@@ -262,6 +270,13 @@ class Program
             Console.WriteLine(@"  \ \  \____        \ \  \ \  \       \ \  \____        \ \  \____  ");
             Console.WriteLine(@"   \ \_______\       \ \__\ \__\       \ \_______\       \ \_______\");
             Console.WriteLine(@"    \|_______|        \|__|\|__|        \|_______|        \|_______|");
+        }
+
+        void rensa() //Rensa bort felmeddelande
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("                                                              ");
+            Console.SetCursorPosition(0, 8);
         }
 
         void art() { }
