@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace calculator; 
 
@@ -13,18 +14,16 @@ class Program
     {
         double firstNum = 0;
         double secondNum = 0;
-        //int menyVal = 0;
         string menyVal = "";
         bool checkNum = false;
+        //int cursorTop = Console.CursorTop; //Markörens position
         // En lista för att spara historik för räkningar
         string resultat = "";
         List<string> resultatLista = new List<string>();
 
-        // Välkomnande meddelande
-        //Console.WriteLine("Välkommen till miniräknaren. Du kan utföra beräkningar med operatorerna + - / och *");
         titel();
         calcMeny:
-            Console.WriteLine("\nVälj ett av alternativen nedan:\n" +
+            Console.WriteLine("\n\nVälj ett av alternativen nedan:\n" +
                 "1. Starta miniräknaren\n" +
                 "2. Visa tidigare resultat\n" +
                 "3. Avsluta");
@@ -40,7 +39,7 @@ class Program
             case "1":
                 while (!checkNum)
                 {
-                    Console.WriteLine("\nSkriv in det första talet: ");
+                    Console.WriteLine("\n\nSkriv in det första talet: ");
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                     if (!checkNum)
                         Console.WriteLine("Fel input, skriv en siffra.");
@@ -81,16 +80,17 @@ class Program
                 art();
                 break;
             default:
-                Console.Write("| FELAKTIGT MENYVAL! FÖRSÖK IGEN |\n");
+                Console.WriteLine("| FELAKTIGT MENYVAL! FÖRSÖK IGEN |");
                 goto calcMeny;
                 break;
         }
         
         //Välj operator och utför beräkningarna
         chooseOperator:
+            int cursorTop = Console.CursorTop;
             Console.WriteLine("Välj en operator (+ - / *):");
             Console.WriteLine("                                                              "); //Rensa raden från tidigare input
-            Console.SetCursorPosition(0, 6);
+            Console.SetCursorPosition(0, cursorTop+1);
             string valOperator = Console.ReadLine();
             if ( valOperator=="+" || valOperator=="-" || valOperator=="/" || valOperator=="*")
             {
@@ -157,8 +157,8 @@ class Program
             else 
             {
                 Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
-                Console.Write("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
-                Console.SetCursorPosition(0, 5);   //Flytta tillbaka markören till sin plats
+                Console.WriteLine("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
+                Console.SetCursorPosition(0, 6);   //Flytta tillbaka markören till sin plats
                 goto chooseOperator;
             }
 
@@ -270,13 +270,18 @@ class Program
             Console.WriteLine(@"  \ \  \____        \ \  \ \  \       \ \  \____        \ \  \____  ");
             Console.WriteLine(@"   \ \_______\       \ \__\ \__\       \ \_______\       \ \_______\");
             Console.WriteLine(@"    \|_______|        \|__|\|__|        \|_______|        \|_______|");
+            // Välkomnande meddelande
+            Console.WriteLine("\n---------------------------   VÄLKOMMEN   ---------------------------");
+            Thread.Sleep(5000);
+            Console.Clear();
         }
 
         void rensa() //Rensa bort felmeddelande
         {
+            int cursorTop = Console.CursorTop;
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("                                                              ");
-            Console.SetCursorPosition(0, 8);
+            Console.SetCursorPosition(0, cursorTop);
         }
 
         void art() { }
