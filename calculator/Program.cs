@@ -16,14 +16,14 @@ class Program
         double secondNum = 0;
         string menyVal = "";
         bool checkNum = false;
-        //int cursorTop = Console.CursorTop; //Markörens position
+        int cursorTop = 0;
         // En lista för att spara historik för räkningar
         string resultat = "";
         List<string> resultatLista = new List<string>();
 
         titel();
         calcMeny:
-            Console.WriteLine("\n\nVälj ett av alternativen nedan:\n" +
+            Console.WriteLine("\nVälj ett av alternativen nedan:\n" +
                 "1. Starta miniräknaren\n" +
                 "2. Visa tidigare resultat\n" +
                 "3. Avsluta");
@@ -31,9 +31,9 @@ class Program
             menyVal = (Console.ReadLine());
             Console.Clear();
 
-        // Användaren matar in tal och matematiska operation
-        // OBS! Användaren måsta mata in ett tal för att kunna ta sig vidare i programmet!
-        raknemeny:
+    // Användaren matar in tal och matematiska operation
+    // OBS! Användaren måsta mata in ett tal för att kunna ta sig vidare i programmet!
+    raknemeny:
         switch (menyVal)
         {
             case "1":
@@ -42,16 +42,19 @@ class Program
                     Console.WriteLine("\n\nSkriv in det första talet: ");
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                     if (!checkNum)
-                        Console.WriteLine("Fel input, skriv en siffra.");
+                        error();
                 }
+                rensa();    //Radera felmeddelandet
                 checkNum = false;
                 while (!checkNum)
                 {
                     Console.WriteLine("Skriv in det andra talet: ");
                     checkNum = double.TryParse(Console.ReadLine(), out secondNum);
                     if (!checkNum)
-                        Console.WriteLine("Fel input, skriv en siffra.");
+                        //Console.WriteLine("Fel input, skriv en siffra.");
+                        error();
                 }
+                rensa();    //Radera felmeddelandet
                 checkNum = false;
                 //firstNum = Convert.ToDouble(Console.ReadLine());
                 //secondNum = Convert.ToDouble(Console.ReadLine());
@@ -84,10 +87,10 @@ class Program
                 goto calcMeny;
                 break;
         }
-        
+
         //Välj operator och utför beräkningarna
         chooseOperator:
-            int cursorTop = Console.CursorTop;
+            cursorTop = Console.CursorTop; //Markörens position
             Console.WriteLine("Välj en operator (+ - / *):");
             Console.WriteLine("                                                              "); //Rensa raden från tidigare input
             Console.SetCursorPosition(0, cursorTop+1);
@@ -156,9 +159,7 @@ class Program
             }
             else 
             {
-                Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
-                Console.WriteLine("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
-                Console.SetCursorPosition(0, 6);   //Flytta tillbaka markören till sin plats
+                error();
                 goto chooseOperator;
             }
 
@@ -282,6 +283,13 @@ class Program
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("                                                              ");
             Console.SetCursorPosition(0, cursorTop);
+        }
+
+        void error()
+        {
+            Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
+            Console.WriteLine("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
+            Console.SetCursorPosition(0, cursorTop);   //Flytta tillbaka markören till sin plats
         }
 
         void art() { }
