@@ -43,19 +43,23 @@ class Program
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                     if (!checkNum)
                         error();
+                        Console.SetCursorPosition(0, 0); //bugfix, markör på fel rad
                 }
                 rensa();    //Radera felmeddelandet
                 checkNum = false;
                 while (!checkNum)
                 {
+                    Console.SetCursorPosition(0, 4); //bugfix, markör på fel rad
                     Console.WriteLine("Skriv in det andra talet: ");
                     checkNum = double.TryParse(Console.ReadLine(), out secondNum);
                     if (!checkNum)
                         //Console.WriteLine("Fel input, skriv en siffra.");
                         error();
+                        Console.SetCursorPosition(0, 6); //bugfix, markör på fel rad
                 }
                 rensa();    //Radera felmeddelandet
                 checkNum = false;
+                Console.SetCursorPosition(0, 6); //bugfix, markör på fel rad
                 //firstNum = Convert.ToDouble(Console.ReadLine());
                 //secondNum = Convert.ToDouble(Console.ReadLine());
                 goto chooseOperator;
