@@ -83,8 +83,8 @@ class Program
             case "3":
                 goto avsluta;
                 break;
-            case "art":
-                art();
+            case "consoleart":
+                consoleart();
                 break;
             default:
                 Console.WriteLine("| FELAKTIGT MENYVAL! FÖRSÖK IGEN |");
@@ -210,7 +210,8 @@ class Program
             }
             else 
             {
-                Console.WriteLine("Felaktigt val, försök igen.\n");
+                error();
+                Console.SetCursorPosition(0, 9); //Återställ markörens plats efter error
                 goto fortsattLRavslut;
             }
 
@@ -277,7 +278,7 @@ class Program
             Console.WriteLine(@"    \|_______|        \|__|\|__|        \|_______|        \|_______|");
             // Välkomnande meddelande
             Console.WriteLine("\n---------------------------   VÄLKOMMEN   ---------------------------");
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
             Console.Clear();
         }
 
@@ -292,11 +293,17 @@ class Program
         void error()
         {
             Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
-            Console.WriteLine("| FELAKTIG INMATNING! FÖRSÖK IGEN. |");
+            Console.WriteLine("|#|  ERROR! FÖRSÖK IGEN.  |#|");
             Console.SetCursorPosition(0, cursorTop);   //Flytta tillbaka markören till sin plats
         }
 
-        void art() { }
+        void consoleart() 
+        {
+            Console.WriteLine("coolt");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Main();
+        }
 
     }
 }
