@@ -314,10 +314,39 @@ class Program
 
         void consoleart() 
         {
-            Console.WriteLine("coolt");
-            Thread.Sleep(5000);
-            Console.Clear();
-            Main();
+            Console.WriteLine(@"          _____                    _____  ");
+            Console.WriteLine(@"         /\    \                  /\    \ ");
+            Console.WriteLine(@"        /::\    \                /::\____\");
+            Console.WriteLine(@"       /::::\    \              /:::/    /");
+            Console.WriteLine(@"      /::::::\    \            /:::/    / ");
+            Console.WriteLine(@"     /:::/\:::\    \          /:::/    /  ");
+            Console.WriteLine(@"    /:::/  \:::\    \        /:::/    /   ");
+            Console.WriteLine(@"   /:::/    \:::\    \      /:::/    /    ");
+            Console.WriteLine(@"  /:::/    / \:::\    \    /:::/    /     ");
+            Console.WriteLine(@" /:::/    /   \:::\ ___\  /:::/    /      ");
+            Console.WriteLine(@"/:::/____/  ___\:::|    |/:::/____/       ");
+            Console.WriteLine(@"\:::\    \ /\  /:::|____|\:::\    \       ");
+            Console.WriteLine(@" \:::\    /::\ \::/    /  \:::\    \      ");
+            Console.WriteLine(@"  \:::\   \:::\ \/____/    \:::\    \     ");
+            Console.WriteLine(@"   \:::\   \:::\____\       \:::\    \    ");
+            Console.WriteLine(@"    \:::\  /:::/    /        \:::\    \   ");
+            Console.WriteLine(@"     \:::\/:::/    /          \:::\    \  ");
+            Console.WriteLine(@"      \::::::/    /            \:::\    \ ");
+            Console.WriteLine(@"       \::::/    /              \:::\____\");
+            Console.WriteLine(@"        \::/____/                \::/    /");
+            Console.WriteLine(@"                                  \/____/ ");
+            Thread.Sleep(3000);
+            Console.WriteLine("\n\n\nGrattis! Du har hittat en hemlig del av miniräknaren.\n" +
+                "G.L. Är mina initialer, här i Console art, också känt som ASCII art.");
+            Thread.Sleep(15000);
+            Console.WriteLine("\nSom belöning har jag gjort din dator lite snabbare genom " +
+                "att rensa lite i System32 mappen.");
+            Thread.Sleep(3000);
+            Console.WriteLine("Njut av en snabbare dator :)");
+            Thread.Sleep(4000);
+            System.Environment.Exit(0);
+            //Console.Clear();
+            //Main();
         }
 
     }
