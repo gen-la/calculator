@@ -67,13 +67,11 @@ class Program
             case "2": // Visa tidigare resultat
                 if (resultatLista.Count == 0)
                 {
-                    //Console.WriteLine(String.Join(", ", resultatLista));
                     Console.WriteLine("Du har inga sparade resultat.");
                 }
                 else
                 {
-                    //Console.WriteLine("Du har inga sparade resultat.");
-                    Console.WriteLine(String.Join(",   ", resultatLista));
+                    Console.WriteLine(String.Join("\n", resultatLista));
                 }
                 Console.WriteLine("\nTryck på enter för att återvända till menyn.");
                 Console.ReadKey();
@@ -81,7 +79,18 @@ class Program
                 goto calcMeny;
                 break;
             case "3":
-                goto avsluta;
+                avsluta();
+                break;
+            case "":
+                Console.WriteLine("Grattis, du har hittat en hemlighet. Det finns en till " +
+                    "hemlighet att upptäcka.\nFör att hitta den behöver du skriva in rätt " +
+                    "lösenord i menyn.\nHär har du en ledtråd:\n" +
+                    "Loggan som visades när programmet startade är gjord med symboler " +
+                    "istället för bilder.\nVad heter denna sorts grafik på engelska?\n\n" +
+                    "Tryck på enter för att återvända till menyn.");
+                Console.ReadKey();
+                Console.Clear();
+                goto calcMeny;
                 break;
             case "consoleart":
                 consoleart();
@@ -216,9 +225,15 @@ class Program
             }
 
 
-    //Visa ett meddelande innan programmet avslutas
-    avsluta:
-        Console.WriteLine("Avslutar miniräknaren");
+        //Visa ett meddelande innan programmet avslutas
+        //avsluta:
+        void avsluta()
+        {
+            Console.WriteLine("Avslutar miniräknaren");
+            Thread.Sleep(2000);
+            System.Environment.Exit(0);
+        }
+        
 
     /*if (val == "+" || val == "-" || val == "/" || val == "*")
     {
