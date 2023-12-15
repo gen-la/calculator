@@ -40,6 +40,8 @@ class Program
                 while (!checkNum)
                 {
                     Console.WriteLine("\n\nSkriv in det första talet: ");
+                    Console.WriteLine("                                                              "); //Rensa raden från tidigare input
+                    Console.SetCursorPosition(0, 3);
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                     if (!checkNum)
                         error();
@@ -51,6 +53,8 @@ class Program
                 {
                     Console.SetCursorPosition(0, 4); //bugfix, markör på fel rad
                     Console.WriteLine("Skriv in det andra talet: ");
+                    Console.WriteLine("                                                              "); //Rensa raden från tidigare input
+                    Console.SetCursorPosition(0, 5);
                     checkNum = double.TryParse(Console.ReadLine(), out secondNum);
                     if (!checkNum)
                         //Console.WriteLine("Fel input, skriv en siffra.");
