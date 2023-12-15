@@ -82,7 +82,9 @@ class Program
                 avsluta();
                 break;
             case "":
-                Console.WriteLine("Grattis, du har hittat en hemlighet. Det finns en till " +
+                Console.WriteLine("Grattis, du har hittat en hemlighet. Skanna koden nedan.\n");
+                qrcode();
+                Console.WriteLine("\n\nDet finns en till " +
                     "hemlighet att upptäcka.\nFör att hitta den behöver du skriva in rätt " +
                     "lösenord i menyn.\nHär har du en ledtråd:\n" +
                     "Loggan som visades när programmet startade är gjord med symboler " +
@@ -349,5 +351,23 @@ class Program
             //Main();
         }
 
+        void qrcode()
+        {
+            Console.WriteLine(@"   ▄▄▄▄▄▄▄   ▄ ▄ ▄ ▄▄ ▄  ▄▄▄▄▄▄▄  ");
+            Console.WriteLine(@"   █ ▄▄▄ █ ▀ ▀ ▄▀▄█▀ ▀▄█ █ ▄▄▄ █  ");
+            Console.WriteLine(@"   █ ███ █ ▀█▀ ▀█▄█▄  ▄█ █ ███ █  ");
+            Console.WriteLine(@"   █▄▄▄▄▄█ █▀▄▀█ ▄▀█▀▄ ▄ █▄▄▄▄▄█  ");
+            Console.WriteLine(@"   ▄▄▄▄▄ ▄▄▄█▀█▄ ▄▀▄▄  █▄ ▄ ▄ ▄   ");
+            Console.WriteLine(@"   ▄▄▀  █▄ ▄ █ ▀▄██▀▄▀▀▄ ▀▀█   ▀  ");
+            Console.WriteLine(@"   ▀▀▀█▀▄▄  ▄▄▄█ ▄▀▄  ▀█▄ █▀█▄▀   ");
+            Console.WriteLine(@"   █▄▄  ▄▄ ▄  ▀ ▄▄▄█▀▄▀█▀███▄▄ ▀  ");
+            Console.WriteLine(@"    █▄▄ ▀▄▄▄ █▀▀▄▀  ▄▀ ▄▀▀█▀▄▄▀   ");
+            Console.WriteLine(@"   █ █▄▄▄▄██▀█▀▀▀▀██▄█ ▀█▀█▀ █ ▀  ");
+            Console.WriteLine(@"   █  ██▄▄█▀ ▀██▄█▀█   ████▄ ▄█▄  ");
+            Console.WriteLine(@"   ▄▄▄▄▄▄▄ █▄▄▀▄ ▄▄▄ ▄▄█ ▄ ███▀▀  ");
+            Console.WriteLine(@"   █ ▄▄▄ █ ▄▄▀▀▀ █▀ ▄▄▀█▄▄▄█ ▄█   ");
+            Console.WriteLine(@"   █ ███ █ █▄▀▀▀▀▀▄██ ██▄▄▄▄██▄▀  ");
+            Console.WriteLine(@"   █▄▄▄▄▄█ █▀█▄▄▄ ▄▄▄  ▀  ▀▀█▄▀   ");
+        }
     }
 }
