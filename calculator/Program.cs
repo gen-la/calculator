@@ -10,7 +10,7 @@ namespace calculator;
 
 class Program
 {
-    static void Main() //test
+    static void Main()  
     {
         double firstNum = 0;
         double secondNum = 0;
