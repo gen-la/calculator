@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
+//using System.Linq;
+//using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+//using static System.Net.Mime.MediaTypeNames;
 
 namespace calculator; 
 
 class Program
 {
-    static void Main()  
+    static void Main()
     {
         double firstNum = 0;
         double secondNum = 0;
