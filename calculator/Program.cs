@@ -23,15 +23,15 @@ class Program
 
         titel();
         calcMeny:
-            Console.WriteLine("\nVälj ett av alternativen nedan:\n" +
-                "1. Starta miniräknaren\n" +
-                "2. Visa tidigare resultat\n" +
-                "3. Avsluta");
+            Console.WriteLine("\nChoose an option below:\n" +
+                "1. Start the calculator\n" +
+                "2. Show earlier results\n" +
+                "3. Shut down the calculator");
             //menyVal = int.Parse(Console.ReadLine());
             menyVal = (Console.ReadLine());
             Console.Clear();
 
-    // Användaren matar in tal och matematiska operation
+    // Användaren matar in tal och matematisk operation
     // OBS! Användaren måsta mata in ett tal för att kunna ta sig vidare i programmet!
     raknemeny:
         switch (menyVal)
@@ -39,7 +39,7 @@ class Program
             case "1":
                 while (!checkNum)
                 {
-                    Console.WriteLine("\n\nSkriv in det första talet: ");
+                    Console.WriteLine("\n\nType the first number: ");
                     Console.WriteLine("                                                              "); //Rensa raden från tidigare input
                     Console.SetCursorPosition(0, 3);
                     checkNum = double.TryParse(Console.ReadLine(), out firstNum);
@@ -52,7 +52,7 @@ class Program
                 while (!checkNum)
                 {
                     Console.SetCursorPosition(0, 4); //bugfix, markör på fel rad
-                    Console.WriteLine("Skriv in det andra talet: ");
+                    Console.WriteLine("Type the second number: ");
                     Console.WriteLine("                                                              "); //Rensa raden från tidigare input
                     Console.SetCursorPosition(0, 5);
                     checkNum = double.TryParse(Console.ReadLine(), out secondNum);
@@ -71,13 +71,13 @@ class Program
             case "2": // Visa tidigare resultat
                 if (resultatLista.Count == 0)
                 {
-                    Console.WriteLine("Du har inga sparade resultat.");
+                    Console.WriteLine("You have no saved results.");
                 }
                 else
                 {
                     Console.WriteLine(String.Join("\n", resultatLista));
                 }
-                Console.WriteLine("\nTryck på enter för att återvända till menyn.");
+                Console.WriteLine("\nPress ENTER to return to the menu.");
                 Console.ReadKey();
                 Console.Clear();
                 goto calcMeny;
@@ -86,14 +86,13 @@ class Program
                 avsluta();
                 break;
             case "":
-                Console.WriteLine("Grattis, du har hittat en hemlighet. Skanna koden nedan.\n");
+                Console.WriteLine("Congrats, you have found a secret. Scan the QR code below.\n");
                 qrcode();
-                Console.WriteLine("\n\nDet finns en till " +
-                    "hemlighet att upptäcka.\nFör att hitta den behöver du skriva in rätt " +
-                    "lösenord i menyn.\nHär har du en ledtråd:\n" +
-                    "Loggan som visades när programmet startade är gjord med symboler " +
-                    "istället för bilder.\nVad heter denna sorts grafik på engelska?\n\n" +
-                    "Tryck på enter för att återvända till menyn.");
+                Console.WriteLine("\n\nThere is another secret to discover.\nTo find it you " +
+                    "need to type the correct password in the menu.\nHere's a hint:\n" +
+                    "The loggo shown at startup is made up of symbols instead of images.\n" +
+                    "What is this kind of graphic called?\n\n" +
+                    "Press ENTER to return to the menu.");
                 Console.ReadKey();
                 Console.Clear();
                 goto calcMeny;
@@ -102,15 +101,15 @@ class Program
                 consoleart();
                 break;
             default:
-                Console.WriteLine("| FELAKTIGT MENYVAL! FÖRSÖK IGEN |");
+                Console.WriteLine("| INVALID MENUCHOICE! PLEASE TRY AGAIN |");
                 goto calcMeny;
                 break;
         }
 
         //Välj operator och utför beräkningarna
         chooseOperator:
-            cursorTop = Console.CursorTop; //Markörens position
-            Console.WriteLine("Välj en operator (+ - / *):");
+            cursorTop = Console.CursorTop; //Spara markörens position
+            Console.WriteLine("Choose an operand (+ - / *):");
             Console.WriteLine("                                                              "); //Rensa raden från tidigare input
             Console.SetCursorPosition(0, cursorTop+1);
             string valOperator = Console.ReadLine();
@@ -120,7 +119,7 @@ class Program
                 {
                     case "+":
                         resultat = $"{firstNum} + {secondNum} = {firstNum + secondNum}";
-                        resultatLista.Add(resultat);
+                        resultatLista.Add(resultat); // Lägg resultatet till listan
                         Console.WriteLine(resultat);
                         rensa();
                         goto fortsattLRavslut;
@@ -156,20 +155,18 @@ class Program
                     default:    // Ifall användaren skulle dela med 0 visa Ogiltig inmatning!
                         while (!checkNum && firstNum <= 0)
                         {
-                            Console.WriteLine("Skriv in ett tal större än 0:");
+                            Console.WriteLine("Type a number bigger than 0:");
                             checkNum = double.TryParse(Console.ReadLine(), out firstNum);
                             if (!checkNum)
-                                Console.WriteLine("Fel input, skriv en siffra.");
-                            //firstNum = Convert.ToDouble(Console.ReadLine());
+                                Console.WriteLine("Wrong input, type a number.");
                         }
-                        checkNum = false;
+                        checkNum = false; //ändra till false för att gå in i loopen nedan
                         while (!checkNum && secondNum <= 0)
                         {
-                            Console.WriteLine("Skriv in ett tal större än 0:");
+                            Console.WriteLine("Type a number bigger than 0:");
                             checkNum = double.TryParse(Console.ReadLine(), out secondNum);
                             if (!checkNum)
-                                Console.WriteLine("Fel input, skriv en siffra.");
-                            //secondNum = Convert.ToDouble(Console.ReadLine());
+                                Console.WriteLine("Wrong input, type a number.");
                         }
                         checkNum = false;
                         goto case "/";
@@ -182,43 +179,18 @@ class Program
                 goto chooseOperator;
             }
 
-        /*switch (valOperator)
-        {
-            case "+":
-                Console.WriteLine(firstNum + secondNum);
-                goto fortsattLRavslut;
-                break;
-            case "-":
-                Console.WriteLine(firstNum - secondNum);
-                goto fortsattLRavslut;
-                break;
-            case "/":
-                Console.WriteLine(firstNum / secondNum);
-                goto fortsattLRavslut;
-                break;
-            case "*":
-                Console.WriteLine(firstNum * secondNum);
-                goto fortsattLRavslut;
-                break;
-            default:
-                //Console.Write("Felaktig inmatning. Försök igen.\n");
-                //Main();
-                //goto chooseOperator;
-                break;
-        }*/
-
         // Fråga användaren om den vill avsluta eller fortsätta.
         fortsattLRavslut:
-            Console.WriteLine("\nVill du utföra fler beräkningar? (Ja/Nej)");
+            Console.WriteLine("\nDo you want to do some more calculations? (Y/N)");
             string val = Console.ReadLine().ToLower();
-            if (val == "j" || val == "ja")
+            if (val == "y" || val == "yes")
             {
                 //menyVal = 1;
                 menyVal = "1";
                 Console.Clear();
                 goto raknemeny;
             }
-            if (val == "n" || val == "nej") 
+            if (val == "n" || val == "no") 
             {
                 Console.Clear();
                 goto calcMeny;
@@ -230,64 +202,13 @@ class Program
                 goto fortsattLRavslut;
             }
 
-
-        //Visa ett meddelande innan programmet avslutas
-        //avsluta:
-        void avsluta()
+        void avsluta() //Visa ett meddelande innan programmet avslutas och avsluta programmet
         {
-            Console.WriteLine("Avslutar miniräknaren");
+            Console.WriteLine("Shutting off the calculator");
             Thread.Sleep(2000);
             System.Environment.Exit(0);
         }
         
-
-    /*if (val == "+" || val == "-" || val == "/" || val == "*")
-    {
-        switch (val)
-        {
-            case "+":
-                Console.WriteLine(firstNum + secondNum);
-                break;
-            case "-":
-                Console.WriteLine(firstNum - secondNum);
-                break;
-            case "/":
-                Console.WriteLine(firstNum / secondNum);
-                break;
-            case "*":
-                Console.WriteLine(firstNum * secondNum);
-                break;
-            default:
-                Console.Write("Felaktigt menyval, försök igen.");
-                break;
-        }
-    }
-    else
-    {
-        Console.WriteLine($"Felaktig inmatning. Välj en operator (+ - / *): ");
-        val = Console.ReadLine();
-        switch (val)
-        {
-            case "+":
-                Console.WriteLine(firstNum + secondNum);
-                break;
-            case "-":
-                Console.WriteLine(firstNum - secondNum);
-                break;
-            case "/":
-                Console.WriteLine(firstNum / secondNum);
-                break;
-            case "*":
-                Console.WriteLine(firstNum * secondNum);
-                break;
-            default:
-                Console.Write("Felaktigt menyval, försök igen.");
-                break;
-        }
-    }*/
-    // Lägga resultat till listan
-    // Visa resultat
-    // Fråga användaren om den vill visa tidigare resultat.
         void titel()
         {
             Console.WriteLine(@" ________          ________          ___               ________");
@@ -298,7 +219,7 @@ class Program
             Console.WriteLine(@"   \ \_______\       \ \__\ \__\       \ \_______\       \ \_______\");
             Console.WriteLine(@"    \|_______|        \|__|\|__|        \|_______|        \|_______|");
             // Välkomnande meddelande
-            Console.WriteLine("\n---------------------------   VÄLKOMMEN   ---------------------------");
+            Console.WriteLine("\n---------------------------   WELCOME   ---------------------------");
             Thread.Sleep(4000);
             Console.Clear();
         }
@@ -314,7 +235,7 @@ class Program
         void error()
         {
             Console.SetCursorPosition(0, 0);    //Visa felmeddelande högst upp
-            Console.WriteLine("|#|  ERROR! FÖRSÖK IGEN.  |#|");
+            Console.WriteLine("|#|  ERROR! TRY AGAIN.  |#|");
             Console.SetCursorPosition(0, cursorTop);   //Flytta tillbaka markören till sin plats
         }
 
@@ -342,17 +263,15 @@ class Program
             Console.WriteLine(@"        \::/____/                \::/    /");
             Console.WriteLine(@"                                  \/____/ ");
             Thread.Sleep(3000);
-            Console.WriteLine("\n\n\nGrattis! Du har hittat en hemlig del av miniräknaren.\n" +
-                "G.L. Är mina initialer, här i Console art, också känt som ASCII art.");
+            Console.WriteLine("\n\n\nCongratulations! You have found a secret part of the Calc.\n" +
+                "G.L. Are my initials, here in Console art, also known as ASCII art.");
             Thread.Sleep(15000);
-            Console.WriteLine("\nSom belöning har jag gjort din dator lite snabbare genom " +
-                "att rensa lite i System32 mappen.");
+            Console.WriteLine("\nAs a reward I have made your computer a little faster by " +
+                "deleting some files in the System32 folder.");
             Thread.Sleep(3000);
-            Console.WriteLine("Njut av en snabbare dator :)");
+            Console.WriteLine("Enjoy a faster computer :)");
             Thread.Sleep(4000);
             System.Environment.Exit(0);
-            //Console.Clear();
-            //Main();
         }
 
         void qrcode()
