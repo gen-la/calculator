@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-//using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-//using static System.Net.Mime.MediaTypeNames;
 
 namespace calculator; 
 
@@ -57,15 +54,12 @@ class Program
                     Console.SetCursorPosition(0, 5);
                     checkNum = double.TryParse(Console.ReadLine(), out secondNum);
                     if (!checkNum)
-                        //Console.WriteLine("Fel input, skriv en siffra.");
                         error();
                         Console.SetCursorPosition(0, 6); //bugfix, markör på fel rad
                 }
                 rensa();    //Radera felmeddelandet
                 checkNum = false;
                 Console.SetCursorPosition(0, 6); //bugfix, markör på fel rad
-                //firstNum = Convert.ToDouble(Console.ReadLine());
-                //secondNum = Convert.ToDouble(Console.ReadLine());
                 goto chooseOperator;
                 break;
             case "2": // Visa tidigare resultat
@@ -185,7 +179,6 @@ class Program
             string val = Console.ReadLine().ToLower();
             if (val == "y" || val == "yes")
             {
-                //menyVal = 1;
                 menyVal = "1";
                 Console.Clear();
                 goto raknemeny;
